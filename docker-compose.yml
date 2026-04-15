@@ -2,11 +2,8 @@ services:
   whisper:
     image: ghcr.io/ggml-org/whisper.cpp:main
     container_name: whisper
-    command: >
-      -m /models/ggml-small.bin
-      --host 0.0.0.0
-      --port 10300
-      --language uk
+    entrypoint: ["/bin/bash", "-lc"]
+    command: whisper-server -m /models/ggml-small.bin --host 0.0.0.0 --port 10300 --language uk
     volumes:
       - ./models:/models
     restart: unless-stopped
