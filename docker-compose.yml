@@ -19,18 +19,14 @@ services:
       - "10300:10300"
 
   piper:
-    image: rhasspy/wyoming-piper:2.2.2
+    image: python:3.11-slim
     container_name: piper
-    command: >
-      --voice uk_UA-ukrainian_tts-medium
-      --data-dir /data
-      --download-dir /data
-      --http-port 5000
+    working_dir: /app
+    command: sh -c "pip install --no-cache-dir 'piper-tts[http]' && python -m piper.http_server --host 0.0.0.0 --port 5000 --model /models/uk_UA-ukrainian_tts-medium.onnx"
     volumes:
-      - ./models:/data
+      - ./models:/models
     restart: unless-stopped
     ports:
-      - "10200:10200"
       - "5000:5000"
 
   assistant:

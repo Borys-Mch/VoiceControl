@@ -8,7 +8,7 @@ import os
 app = FastAPI()
 
 WHISPER_URL = "http://whisper:10300/inference"
-PIPER_URL = "http://piper:5000/api/tts"
+PIPER_URL = "http://piper:5000/"
 REQUEST_TIMEOUT_SECONDS = 30
 
 def transcribe(audio_path):
@@ -24,11 +24,13 @@ def transcribe(audio_path):
 def synthesize(text):
     r = requests.post(
         PIPER_URL,
-        json={"text": text},
+        data=text.encode("utf-8"),
+        headers={"Content-Type": "text/plain; charset=utf-8"},
         timeout=REQUEST_TIMEOUT_SECONDS,
     )
     r.raise_for_status()
     return r.content
+
 
 def handle_command(text):
     text = text.lower()
