@@ -32,6 +32,7 @@ def synthesize(text):
     return r.content
 
 
+
 def handle_command(text):
     text = text.lower()
 
