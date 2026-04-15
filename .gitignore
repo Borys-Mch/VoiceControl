@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+venv/
+env/
+
+# Tooling / OS
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+
+# Local environment files
+.env
+.env.*
+
+# Large model/binary artifacts (keep metadata JSON)
+models/*.bin
+models/*.onnx
+models/*.gguf
+models/*.pt
+models/*.pth
+models/*.ckpt
+models/*.safetensors
