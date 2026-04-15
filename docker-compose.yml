@@ -25,6 +25,7 @@ services:
       --voice uk_UA-ukrainian_tts-medium
       --data-dir /data
       --download-dir /data
+      --http-port 5000
     volumes:
       - ./models:/data
     restart: unless-stopped
